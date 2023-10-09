@@ -9,11 +9,13 @@ import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import com.androidfrancis.lab6.navigation.NavigationMeals
+import com.androidfrancis.lab6.ui.categories.model.CategoriesScreen
 import com.androidfrancis.lab6.ui.concerts.view.ConcertsView
 
 import com.androidfrancis.lab6.ui.detail.view.DetailView
 import com.androidfrancis.lab6.ui.favorites.view.Favorites2View
 import com.androidfrancis.lab6.ui.favorites.view.favoritesView
+import com.androidfrancis.lab6.ui.mealDetail.model.MealsDetailScreen
 import com.androidfrancis.lab6.ui.meals.model.MealsScreen
 
 @Preview(showBackground = true, showSystemUi = true)
@@ -49,5 +51,11 @@ fun BNavigation(){
         composable(route = NavigationMeals.Meals.route  ){
             MealsScreen(navController)
        }
+        composable(route = NavigationMeals.Categories.route  ){
+            CategoriesScreen(navController)
+        }
+        composable(route = NavigationMeals.MealsDetail.route  ){
+            MealsDetailScreen(navController)
+        }
     }
 }
