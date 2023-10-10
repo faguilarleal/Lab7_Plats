@@ -47,7 +47,7 @@ fun ANavigation() {
 @Composable
 fun BNavigation(){
     val navController = rememberNavController()
-    NavHost(navController = navController, startDestination = NavigationMeals.Meals.route ) {
+    NavHost(navController = navController, startDestination = NavigationMeals.Categories.route ) {
         composable(route = NavigationMeals.Meals.route  ){
             MealsScreen(navController)
        }

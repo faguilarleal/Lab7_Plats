@@ -15,6 +15,7 @@ class MealsRepository(private val webService: MealsWebServices = MealsWebService
             ) {
                 if (response.isSuccessful)
                     successCallback(response.body())
+                //Log.i(ContentValues.TAG, "funciona :)")
             }
             override fun onFailure(call: Call<FilterListResponse>, t: Throwable) {
                 TODO("Not yet implemented")

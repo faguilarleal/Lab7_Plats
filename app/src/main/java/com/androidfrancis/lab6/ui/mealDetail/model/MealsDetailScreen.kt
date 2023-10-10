@@ -1,5 +1,7 @@
 package com.androidfrancis.lab6.ui.mealDetail.model
 
+import android.content.ContentValues.TAG
+import android.util.Log
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
@@ -9,6 +11,8 @@ import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
+import androidx.compose.foundation.rememberScrollState
+import androidx.compose.foundation.verticalScroll
 import androidx.compose.material3.Card
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
@@ -37,13 +41,16 @@ fun MealsDetailScreen(navController: NavHostController) {
         val mealsFromTheApi = response?.mealsDetail
         rememberedMeals.value = mealsFromTheApi.orEmpty()
     }
-    Column(){
-        LazyColumn {
+    Column() {
+        Text(text = rememberedMeals.value.toString())
 
+        LazyColumn {
             items(rememberedMeals.value) { meal ->
                 Cards(meal)
             }
+
         }
+
     }
 }
 
@@ -59,24 +66,23 @@ fun Cards(pmeal: LookupResponse){
             ){
 
                 AsyncImage(model = ImageRequest.Builder(LocalContext.current)
-                    .data(pmeal.imgURL)
+                    .data(pmeal.mealThumb)
                     .transformations()
                     .build()
                     ,
                     contentDescription = "",
                     modifier= Modifier.fillMaxSize())
             }
-            Row(){
-                Text(
-                    text = "Area", fontSize = 15.sp,
-                    fontWeight = FontWeight.Bold,
-                )
-                Text(
-                    modifier = Modifier
-                        .padding(5.dp),
-                    text = pmeal.area
-                )
-            }
+
+            Text(
+                text = "Nombre", fontSize = 15.sp,
+                fontWeight = FontWeight.Bold,
+            )
+            Text(
+                modifier = Modifier
+                    .padding(5.dp),
+                text = pmeal.name
+            )
             Text(
                 text = "Ingredientes: ", fontSize = 25.sp,
                 fontWeight = FontWeight.Bold,

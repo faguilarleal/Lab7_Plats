@@ -31,7 +31,7 @@ class MealsWebServices {
         return api.getFilter()
     }
 
-    fun getLookUps(): Call<LookupListResponse> {
+    fun getDetails(): Call<LookupListResponse> {
         return api.getLookup()
     }
 

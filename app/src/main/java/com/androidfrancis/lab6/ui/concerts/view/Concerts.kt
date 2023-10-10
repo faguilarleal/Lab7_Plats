@@ -7,6 +7,7 @@ import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
@@ -28,6 +29,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.layout.ContentScale
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
@@ -35,7 +37,10 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavHostController
+import coil.compose.AsyncImage
+import coil.request.ImageRequest
 import com.androidfrancis.lab6.R
+import com.androidfrancis.lab6.networking.response.FilterResponse
 import com.androidfrancis.lab6.ui.TopBar.TopBar
 import com.androidfrancis.lab6.ui.profile.view.NavigationState
 
@@ -85,8 +90,8 @@ fun ConcertsView(navController: NavHostController) {
 
 
         ) {
-            Cards(Images(R.drawable.ic_img1, "Party", "Snoopy en una fiesta"), navController)
-            Cards(Images(R.drawable.ic_img2, "Risa", "Snoopy Riendose"), navController)
+            Cards2(Images(R.drawable.ic_img1, "Party", "Snoopy en una fiesta"), navController)
+            Cards2(Images(R.drawable.ic_img2, "Risa", "Snoopy Riendose"), navController)
         }
         Row(
             horizontalArrangement = Arrangement.Center,
@@ -164,6 +169,42 @@ fun Cards( p: Images, navController: NavHostController){
                     .padding(5.dp),
                 text = p.txt2
             )
+        }
+    }
+}
+
+
+@Composable
+fun Cards2( p: Images,navController: NavHostController){
+
+    Card(
+        // onClick = {navController.navigate(route = NavigationState.Detail.route)},
+        modifier = Modifier
+            .padding(10.dp)
+            .fillMaxWidth()
+    ){
+        Row(){
+            Box(
+                modifier = Modifier
+                    .padding(10.dp)
+                    .width(160.dp)
+                    .height(100.dp)
+            ){
+
+                Image(
+                    painter = painterResource(id = p.img),
+                    contentDescription = stringResource(id = R.string.d1),
+                    contentScale = ContentScale.Fit,
+                    modifier = Modifier
+                        .fillMaxSize()
+                )
+            }
+
+            Text(
+                text = p.txt1, fontSize = 15.sp,
+                fontWeight = FontWeight.Bold,
+            )
+
         }
     }
 }

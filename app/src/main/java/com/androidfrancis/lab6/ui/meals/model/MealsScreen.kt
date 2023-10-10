@@ -10,6 +10,7 @@ import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
 import androidx.compose.material3.Card
+import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.MutableState
@@ -24,6 +25,7 @@ import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavHostController
 import coil.compose.AsyncImage
 import coil.request.ImageRequest
+import com.androidfrancis.lab6.navigation.NavigationMeals
 import com.androidfrancis.lab6.networking.response.FilterResponse
 import com.androidfrancis.lab6.ui.meals.view.MealsViewModel
 
@@ -40,22 +42,18 @@ fun MealsScreen(navController: NavHostController) {
         LazyColumn {
 
             items(rememberedMeals.value) { meal ->
-                Cards(meal)
+                Cards(meal, navController)
             }
         }
     }
-
-
-
 }
 
-
-
+@OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun Cards(pmeal: FilterResponse){
+fun Cards(pmeal: FilterResponse, navController: NavHostController){
 
     Card(
-       // onClick = {navController.navigate(route = NavigationState.Detail.route)},
+        onClick = {navController.navigate(route = NavigationMeals.MealsDetail.route)},
         modifier = Modifier
             .padding(10.dp)
             .fillMaxWidth()
